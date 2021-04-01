@@ -283,6 +283,69 @@ mp_obj_t picodisplay_circle(mp_obj_t x_obj, mp_obj_t y_obj, mp_obj_t r_obj) {
     return mp_const_none;
 }
 
+mp_obj_t picodisplay_line (mp_uint_t n_args, const mp_obj_t* args) {
+    (void)n_args; //Unused input parameter, we know it's 4
+
+    if (display != nullptr) {
+        int x1 = mp_obj_get_int(args[0]);
+        int y1 = mp_obj_get_int(args[1]);
+        int x2 = mp_obj_get_int(args[2]);
+        int y2 = mp_obj_get_int(args[3]);
+
+        Point p1(x1, y1);
+        Point p2(x2, y2);
+        display->line(p1, p2);
+    }
+    else
+        mp_raise_msg(&mp_type_RuntimeError, NOT_INITIALISED_MSG);
+
+    return mp_const_none;
+}
+
+mp_obj_t picodisplay_triangle(mp_uint_t n_args, const mp_obj_t* args) {
+    (void)n_args; //Unused input parameter, we know it's 6
+
+    if (display != nullptr) {
+        int x1 = mp_obj_get_int(args[0]);
+        int y1 = mp_obj_get_int(args[1]);
+        int x2 = mp_obj_get_int(args[2]);
+        int y2 = mp_obj_get_int(args[3]);
+        int x3 = mp_obj_get_int(args[4]);
+        int y3 = mp_obj_get_int(args[5]);
+
+        Point p1(x1, y1);
+        Point p2(x2, y2);
+        Point p3(x3, y3);
+        display->triangle(p1, p2, p3);
+    }
+    else
+        mp_raise_msg(&mp_type_RuntimeError, NOT_INITIALISED_MSG);
+
+    return mp_const_none;
+}
+
+mp_obj_t picodisplay_polygon(mp_uint_t n_args, const mp_obj_t* args) {
+    (void)n_args; //Unused input parameter, we know it's 6
+
+    if (display != nullptr && n_args < 64) {
+
+        std::vector<Point> points;
+        points.resize(n_args);
+
+        for (size_t i = 0; i < n_args; i+=2)
+        {
+            Point point(mp_obj_get_int(args[i]), mp_obj_get_int(args[i + 1]));
+            points.push_back(point);
+        }
+
+        display->polygon(points);
+    }
+    else
+        mp_raise_msg(&mp_type_RuntimeError, NOT_INITIALISED_MSG);
+
+    return mp_const_none;
+}
+
 mp_obj_t picodisplay_character(mp_uint_t n_args, const mp_obj_t *args) {
     if(display != nullptr) {
         int c = mp_obj_get_int(args[0]);

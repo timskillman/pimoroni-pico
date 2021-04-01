@@ -24,3 +24,6 @@ extern mp_obj_t picodisplay_rectangle(mp_uint_t n_args, const mp_obj_t *args);
 extern mp_obj_t picodisplay_circle(mp_obj_t x_obj, mp_obj_t y_obj, mp_obj_t r_obj);
 extern mp_obj_t picodisplay_character(mp_uint_t n_args, const mp_obj_t *args);
 extern mp_obj_t picodisplay_text(mp_uint_t n_args, const mp_obj_t *args);
+extern mp_obj_t picodisplay_triangle(mp_uint_t n_args, const mp_obj_t* args);
+extern mp_obj_t picodisplay_line(mp_uint_t n_args, const mp_obj_t* args);
+extern mp_obj_t picodisplay_polygon(mp_uint_t n_args, const mp_obj_t* args);

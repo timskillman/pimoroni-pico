@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\libraries",
+    "\\libraries\\pico_graphics",
+    "\\micropython",
+    "\\micropython\\modules",
+    "\\micropython\\modules\\pico_display"
+  ],
+  "SelectedNode": "\\libraries\\pico_graphics\\types.cpp",
+  "PreviewInSolutionExplorer": false
+}
